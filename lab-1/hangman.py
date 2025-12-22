@@ -43,9 +43,11 @@ def get_guess(already_guessed):
     return gues
 
 def update_state(word, guess, guessed_letters):
-    # Жинхэнэ state-ийг шинэчилнэ
-    pass
-
+    guessed_letters.add(guess)
+    if guess in word:
+        print("Зөв таав!")
+    else:
+        print("Буруу таав!")
 
 def main():
     word_list = ["PYTHON","MONGOL","COMPUTER","HANGMAN"]
@@ -57,7 +59,8 @@ def main():
     while wrong_guesses < max_wrong and not  (set(word) <= guessed_letters):
         display_progress(word, guessed_letters)
         guess = get_guess(guessed_letters)
-        # update_state ...
+        if guess in word:
+            update_state(word,guess, guessed_letters)
 
 if __name__ == "__main__":
     main()
